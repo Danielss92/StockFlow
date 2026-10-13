@@ -1,0 +1,67 @@
+.categoria-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 300px;
+}
+
+.categoria-formulario input {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+.categoria-formulario button {
+    padding: 8px;
+    cursor: pointer;
+}
+.lista-categorias {
+    margin-top: 30px;
+    width: 500px;
+}
+
+.lista-categorias p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.lista-categorias span {
+    width: 180px;
+}
+
+.lista-categorias button {
+    padding: 6px 10px;
+    cursor: pointer;
+}
+
+.botao-editar {
+    background-color: #eee;
+    border: 1px solid #ccc;
+}
+
+.botao-deletar {
+    background-color: #f5d6d6;
+    border: 1px solid #e0aaaa;
+}
+
+.mensagem-categoria {
+    padding: 10px;
+    margin-top: 15px;
+    width: 480px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.mensagem-categoria.erro {
+    background-color: #f5d6d6;
+    border-color: #e0aaaa;
+}
+
+.mensagem-categoria.sucesso {
+    background-color: #d9f0d9;
+    border-color: #a8d5a8;
+}

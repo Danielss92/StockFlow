@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider     = "prisma-client"
+  output       = "../generated/prisma" // diretorio onde o client será gerado
+  moduleFormat = "esm" // faz o cliente gerado ficar compatível com o import() no prismaClient.js
+
+  importFileExtension = "ts"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+//CATEGORIA DE PRODUTOS
+model Category {
+  id   Int    @id @default(autoincrement())
+  nome String @unique
+
+  produtos Produto[]
+}
+
+//Tabela de produtos
+model Produto {
+  id                Int      @id @default(autoincrement())
+  nome              String
+  preco             Float
+  quantidadeEstoque Int
+  minimoEstoque     Int
+  criadoEm          DateTime @default(now())
+
+  categoryId  Int
+  category    Category   @relation(fields: [categoryId], references: [id])
+  intensVenda SaleItem[]
+}
+
+//tabela de vendas
+model Sale {
+  id       Int        @id @default(autoincrement())
+  criadoEm DateTime   @default(now())
+  itens    SaleItem[]
+}
+
+//cada item dentro de uma venda
+model SaleItem {
+  id         Int @id @default(autoincrement())
+  quantidade Int
+
+  saleId    Int
+  produtoId Int
+
+  sale    Sale    @relation(fields: [saleId], references: [id])
+  produto Produto @relation(fields: [produtoId], references: [id])
+}
+
+model User {
+  id       Int      @id @default(autoincrement())
+  nome     String
+  email    String   @unique
+  senha    String
+  criadoEm DateTime @default(now())
+}
