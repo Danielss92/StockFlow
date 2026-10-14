@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import prisma from "../prismaClient.js";
 import validarNovoUsuario from "../middlewares/userMiddleware.js";
 
-const router = express.Router();// Routes cria um mini-roteador. Serve para chamar as rotas. Exemplo: ao inves de app.post, app.get,//etc, agora teremos router.post, router.get, etc
+const router = express.Router();
 
 //criar usuario
 router.post("/users",validarNovoUsuario, async(req, res)=>{

@@ -7,8 +7,7 @@ import Login from "./pages/Login";
 import PrivateRoute from "./PrivateRoute";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-{/*BrowserRouter = dá ao react capacidade de controlar as rotas
-Routes = conjunto de rotas */}
+
 
 
 function App() {
@@ -21,11 +20,9 @@ function App() {
     <>
       <BrowserRouter>
 
-        <Navbar token={token} setToken={setToken}/> {/*o Navbar.jsx vai receber a função que altera o estado do token  do app.jsx */}
-        {/* passando o token para o navbar, ele poderá controlar a exibição do botao de "Sair" ou link "Entrar" e etc */}
+        <Navbar token={token} setToken={setToken}/> 
         <Routes>
-          <Route path="/" element={<Dashboard />} />{/* Quando a URL for /, mostre o componente Dashboard.*/}
-          <Route path="/categories" element={
+          <Route path="/" element={<Dashboard />} />
             
             <PrivateRoute token={token}>
               
@@ -33,12 +30,12 @@ function App() {
 
             </PrivateRoute>
             
-            } />
+             
           <Route path="/produtos" element={
 
             <PrivateRoute token={token}>
 
-              <Product /> {/*componente Product é "children" de PrivateRoute */}
+              <Product /> 
 
             </PrivateRoute>
 
@@ -51,7 +48,7 @@ function App() {
                 <Sale />
             </PrivateRoute> } />
 
-          <Route path="/login" element={<Login setToken={setToken}/>} /> {/*envia a FUNÇÃO setToken para o login, para que ele possa alterar o estado do token*/}
+          <Route path="/login" element={<Login setToken={setToken}/>} /> 
 
         </Routes>
 

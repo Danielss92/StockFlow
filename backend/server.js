@@ -1,7 +1,7 @@
 //1 - servidor express, arquivo Principal
 
-//const express = require("express");
-import express from "express"; //utilizando ES module
+
+import express from "express"; 
 import userRoutes from "./routes/userRoutes.js";
 
 import productRoutes from "./routes/productRoutes.js";
@@ -11,9 +11,9 @@ import cors from "cors";
 
 const app = express();
 
-app.use(cors());// deve ficar antes das rotas
+app.use(cors());
 app.use(express.json());
-app.use(userRoutes); // Express, use as rotas que estão dentro desse userRoutes
+app.use(userRoutes); 
 app.use(productRoutes);
 app.use(categoryRouter);
 app.use(saleRoutes);

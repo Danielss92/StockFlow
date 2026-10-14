@@ -21,7 +21,7 @@ nav a:hover {
 }
 
 nav button {
-    margin-left: auto; /*O auto permite que a margem esquerda ocupe o espaço horizontal disponível. Como a Navbar usa display: flex, esse espaço empurra o botão Sair para a direita. o comportamento de auto depende do contexto e do espaço disponível.*/
+    margin-left: auto; 
     padding: 8px 14px;
     cursor: pointer;
     border: 1px solid #ddd;

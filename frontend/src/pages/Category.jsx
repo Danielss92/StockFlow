@@ -31,7 +31,7 @@ function Category() {
 
     async function editarCategoria(categoria) {
 
-        setCategoriaEditando(categoria.id)//objeto categoria é recebido ao clicar no botao editar
+        setCategoriaEditando(categoria.id)
         setNome(categoria.nome)
 
 
@@ -106,7 +106,7 @@ function Category() {
       
         setTipoMensagem("sucesso")
 
-        buscarCategorias() //lista novamente as categorias
+        buscarCategorias()
     }
     return (
         <main>
@@ -118,22 +118,22 @@ function Category() {
 
             <form onSubmit={(event) => { event.preventDefault(); cadastrarCategoria() }}>
 
-                {/*preventDefault impede que a pagina seja recarregada quando o formulario for enviado */}
+                
                 <div className="categoria-formulario">
-                <input type="text" placeholder="Nome da categoria" value={nome} onChange={(event) => setNome(event.target.value)}></input> {/*Cada vez que houver mudança  no campo do input setNome receberá esse valor. O valor do input vem da propriedade nome, que é atribuida atraves de setNome */}
+                <input type="text" placeholder="Nome da categoria" value={nome} onChange={(event) => setNome(event.target.value)}></input> 
 
-                <button type="submit"> Cadastrar categoria</button>  {/*com "submit" o navegador entende que esse botao é para enviar o formulario */}
+                <button type="submit"> Cadastrar categoria</button> 
                 </div>
             </form>
 
-            {categorias.map((categoria) => ( //esta sendo usado chaves aqui pois é a execução de um codigo puramente javascript em um jsx. As chaves dizem basicamente A partir daqui, quero executar uma expressão JavaScript.
+            {categorias.map((categoria) => ( 
 
-                <p key={categoria.id}> {/*O valor dessa propriedade será uma expressão javascript */}
+                <p key={categoria.id}> 
 
                     {categoria.nome}
 
                     <button type="button" className="botao-editar" onClick={() => editarCategoria(categoria)}>Editar</button>
-                    {/*Vai passar o objeto categoria para o metodo editarCategoria */}
+                   
 
                     <button type="button" className="botao-deletar
                     " onClick={() => excluirCategoria(categoria.id)}>Excluir</button>

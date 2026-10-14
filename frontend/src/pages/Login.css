@@ -1,8 +1,7 @@
 
 .login-container {
     width: 320px;
-    margin: 80px auto; /*adiciona espaço vertical e centraliza horizontalmente*/
-    padding: 25px;
+    margin: 80px auto; 
     border: 1px solid #ddd;
     border-radius: 8px;
 }

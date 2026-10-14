@@ -9,7 +9,7 @@ function validarItensVenda(itens){
         }
     }
 
-    const produtos = new Set()// armazena valores sem repetição
+    const produtos = new Set()
 
 
     for(const item of itens){
@@ -21,7 +21,7 @@ function validarItensVenda(itens){
             }
         }
 
-        if(produtos.has(item.produtoId)){// verifica se esse produto ja foi registrado na mesma venda(verifica isso atraves dos valores armazenados no SET)
+        if(produtos.has(item.produtoId)){
             return{
                 valido:false,
                 mensagem : "O mesmo produto nao pode aparecer mais de uma vez na venda"

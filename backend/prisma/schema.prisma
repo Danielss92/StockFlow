@@ -5,8 +5,8 @@
 
 generator client {
   provider     = "prisma-client"
-  output       = "../generated/prisma" // diretorio onde o client será gerado
-  moduleFormat = "esm" // faz o cliente gerado ficar compatível com o import() no prismaClient.js
+  output       = "../generated/prisma" 
+  moduleFormat = "esm" 
 
   importFileExtension = "ts"
 }

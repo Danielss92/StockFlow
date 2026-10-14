@@ -1,10 +1,9 @@
 import {Link} from "react-router-dom"
 import "./Navbar.css"
 
-function Navbar({token, setToken}){//propriedade setToken
-
+function Navbar({token, setToken}){
     function sair(){
-        localStorage.removeItem("token");//função remover token ao fazer logout
+        localStorage.removeItem("token");
         setToken(null)
     }
 
@@ -18,7 +17,7 @@ function Navbar({token, setToken}){//propriedade setToken
             <Link to = "/categories">Categorias</Link>
             <Link to = "/sales">Vendas</Link>
 
-            {token ?( /*se o usuario estiver autenticado*/
+            {token ?(
                     <button type="button" onClick={sair}>Sair</button>
                 ) : (
                          <Link to="/login">Entrar</Link>
@@ -29,4 +28,4 @@ function Navbar({token, setToken}){//propriedade setToken
     )
 }
 
-export default Navbar // é importado no app.jsx
+export default Navbar // 

@@ -9,7 +9,7 @@ function Dashboard(){
 
    const [quantidadeVendas, setQuantidadeVendas] = useState(0)
 
-   //#region BuscarProdutos
+   
 
    //#region BuscarVendas
    async function buscarVendas(){
@@ -47,10 +47,10 @@ function Dashboard(){
 
           const dados = await resposta.json();
 
-          setQuantidadeProdutos(dados.length);//passe a quantidade de produtos para o quantidadeProdutos através do setQuantidadeProdutos
+          setQuantidadeProdutos(dados.length);
 
-          const produtosBaixos= dados.filter(//percorre todos os produtos e mantem somente aqueles que satisfazem
-            produto => produto.quantidadeEstoque <= produto.minimoEstoque //dados é uma lista com resultados da resposta do fetch. Produto contem um item individual que está dentro da lista de dados. Poderia ser feito com outro nome, por exemplo: item => item.quantidadeEstoque <= item.minimoEstoque
+          const produtosBaixos= dados.filter(
+            produto => produto.quantidadeEstoque <= produto.minimoEstoque 
           )
 
           setProdutosEstoqueBaixo(produtosBaixos.length)
@@ -69,8 +69,7 @@ function Dashboard(){
         }
         carregarProdutos()
         carregarVendas()
-    },[])//O [] significa que o efeito será executado quando o componente for carregado.
-
+    },[])
   
 
     return(

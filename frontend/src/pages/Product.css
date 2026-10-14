@@ -8,8 +8,8 @@
 
 .produto-formulario input{
     padding: 8px;
-    width: 100%; /*vai ocupar toda a largura do formulario*/
-    box-sizing: border-box; /*border-box faz o padding ser considerado dentro dos 300px de largura do formulario se nao seriam 300px + 8px do padding = 308. Quando eu disser que esse elemento tem 300px, quero que esses 300px já incluam padding e borda*/
+    width: 100%; 
+    box-sizing: border-box; 
 }
 
 .produto-formulario button{
@@ -23,19 +23,19 @@
 }
 .lista-produtos p{
     display: flex;
-    align-items: center; /*alinha verticalmente ao centro*/
+    align-items: center; 
     gap: 10px;
-    padding: 10px;/*espaço interno*/
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 6px;
 }
 
 .lista-produtos span{
-    width: 180px;/*cada nome terá uma area de 180 independente do seu tamanho. Isso para os botoes começarem sempre no mesmo lugar*/
+    width: 180px;
 }
 
 .lista-produtos button{
-    padding: 6px 10px;/*6px  → cima e baixo, 10px → esquerda e direita*/
+    padding: 6px 10px;
     cursor: pointer;
 }
 

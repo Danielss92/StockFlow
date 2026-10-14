@@ -105,22 +105,22 @@ router.put("/categories/:id",autenticarUsuario, validarCategoria, async (req, re
       });
     }
 
-    //achar mesmo nome de categoria em um id diferente para não permitir atualização
+   
     const categoriaExistente = await prisma.category.findFirst({
       where: {
         nome: {
           equals: req.body.nome,
           mode: "insensitive",
-          //ache um objeto com o mesmo nome de categoria passado no req.body
+          
         },
         NOT: {
-          //que não tenha esse mesmo id do objeto atual
+        
           id: id,
         },
       },
     });
     if (categoriaExistente) {
-      //se já existe um objeto com a mesma categoria, impede a atualização
+    
       return res.status(409).json({
         message: "Nome da categoria ja existe",
       });

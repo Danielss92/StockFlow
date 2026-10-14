@@ -21,8 +21,7 @@ function autenticarUsuario(req, res, next){
 
     const dadosToken = jwt.verify(token, process.env.JWT_SECRET)
 
-    req.usuarioId = dadosToken.id;//ualquer rota que passar pelo middleware poderá descobrir qual usuário está fazendo a requisição.
-    // pode retornar em uma rota get um console.log(req.usuarioId)
+    req.usuarioId = dadosToken.id;
 
     next()
 }

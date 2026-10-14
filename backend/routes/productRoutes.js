@@ -13,7 +13,7 @@ router.post("/produtos",autenticarUsuario, validarProduto, async (req, res) => {
       minimoEstoque,
       criadoEm,
       categoryId,
-    } = req.body; //quatro variaveis criadas ao mesmo tempo
+    } = req.body; 
 
     const categoria = await prisma.category.findUnique({
       where: {
@@ -182,7 +182,7 @@ router.delete("/produtos/:id", autenticarUsuario, async (req, res) => {
   } catch (error) {
     console.error(error);
 
-    if(error.code === "P2003"){//P2003 é um erro lançado pelo prisma quando há uma relação entre dados(chave extrangeira), impedindo então a requisição
+    if(error.code === "P2003"){
       return res.status(400).json({
         message: "Não é possível excluir este produto porque ele possui vendas associadas",
       });
