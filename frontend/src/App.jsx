@@ -11,8 +11,8 @@ import { useState } from "react";
 
 
 function App() {
-  const [token, setToken]= useState(
-    localStorage.getItem("token") 
+  const [token, setToken] = useState(
+    localStorage.getItem("token")
   )
 
 
@@ -20,35 +20,49 @@ function App() {
     <>
       <BrowserRouter>
 
-        <Navbar token={token} setToken={setToken}/> 
+        <Navbar token={token} setToken={setToken} />
         <Routes>
-          <Route path="/" element={<Dashboard />} />
-            
+
+          <Route path="/login" element={<Login setToken={setToken} />} />
+
+
+          <Route path="/" element={
+
             <PrivateRoute token={token}>
-              
-              <Category />
+
+              <Dashboard />
 
             </PrivateRoute>
-            
-             
+
+
+          } />
+
+          <Route path="/categories" element={
+            <PrivateRoute token={token}>
+              <Category />
+            </PrivateRoute>
+          } />     
+
+
+
           <Route path="/produtos" element={
 
             <PrivateRoute token={token}>
 
-              <Product /> 
+              <Product />
 
             </PrivateRoute>
 
           } />
 
           <Route path="/sales" element={
-            
+
             <PrivateRoute token={token}>
 
-                <Sale />
-            </PrivateRoute> } />
+              <Sale />
+            </PrivateRoute>} />
 
-          <Route path="/login" element={<Login setToken={setToken}/>} /> 
+
 
         </Routes>
 
