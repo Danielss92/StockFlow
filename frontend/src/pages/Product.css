@@ -1,68 +1,118 @@
-
-.produto-formulario{
+.produto-formulario {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    width: 300px;
+    gap: 12px;
+    width: 100%;
+    max-width: 420px;
 }
 
-.produto-formulario input{
-    padding: 8px;
-    width: 100%; 
-    box-sizing: border-box; 
+.produto-formulario input {
+    padding: 12px;
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 14px;
 }
 
-.produto-formulario button{
-    padding: 8px;
+.produto-formulario input:focus {
+    outline: none;
+    border-color: #2563eb;
+}
+
+.produto-formulario button {
+    padding: 12px;
     cursor: pointer;
+    border: none;
+    border-radius: 6px;
+    background-color: #2563eb;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
 }
 
-.lista-produtos{
-    margin-top: 30px;
-    width: 500px;
+.produto-formulario button:hover {
+    background-color: #1d4ed8;
 }
-.lista-produtos p{
+
+.lista-produtos {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 700px;
+}
+
+.lista-produtos p {
     display: flex;
-    align-items: center; 
+    align-items: center;
     gap: 10px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+    padding: 14px;
+    margin: 0 0 12px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background-color: white;
 }
 
-.lista-produtos span{
-    width: 180px;
+.lista-produtos span {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
-.lista-produtos button{
-    padding: 6px 10px;
+.lista-produtos button {
+    padding: 8px 12px;
     cursor: pointer;
+    border-radius: 5px;
+    font-size: 13px;
 }
 
-.botao-editar{
-    background-color: #eee;
-    border: 1px solid #ccc;
+.botao-editar {
+    background-color: #eff6ff;
+    border: 1px solid #bfdbfe;
+    color: #1d4ed8;
 }
 
-.botao-deletar{
-    background-color: #f5d6d6;
-    border:1px solid #e0aaaa;
+.botao-editar:hover {
+    background-color: #dbeafe;
 }
 
-.mensagem-produto{
-    padding: 10px;
+.botao-deletar {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #b91c1c;
+}
+
+.botao-deletar:hover {
+    background-color: #fee2e2;
+}
+
+.mensagem-produto {
+    padding: 12px;
     margin-top: 15px;
-    width: 480px;
+    width: 100%;
+    max-width: 420px;
+    box-sizing: border-box;
     border: 1px solid #ddd;
     border-radius: 6px;
 }
 
-.mensagem-produto.erro{
-     background-color: #f5d6d6;
-     border-color: #e0aaaa;
+.mensagem-produto.erro {
+    background-color: #fef2f2;
+    border-color: #fecaca;
+    color: #b91c1c;
 }
 
-.mensagem-produto.sucesso{
-     background-color: #d9f0d9;
-    border-color: #a8d5a8;
+.mensagem-produto.sucesso {
+    background-color: #f0fdf4;
+    border-color: #bbf7d0;
+    color: #166534;
+}
+
+@media (max-width: 480px) {
+    .lista-produtos p {
+        flex-wrap: wrap;
+    }
+
+    .lista-produtos span {
+        flex-basis: 100%;
+    }
 }
