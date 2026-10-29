@@ -73,9 +73,11 @@ function Dashboard(){
   
 
     return(
-        <main>
-            <h1>Dashboard</h1>
-            <p>Bem vindo ao StockFlow!  Acompanhe seus produtos, estoque e vendas.</p>
+        <main className="dashboard-page">
+            <header className="dashboard-header">
+                <h1>Dashboard</h1>
+                <p>Bem vindo ao StockFlow!  Acompanhe seus produtos, estoque e vendas.</p>
+            </header>
 
             <div className="dashboard-cards">
                 
@@ -84,7 +86,7 @@ function Dashboard(){
                     <p>{quantidadeProdutos}</p>
                 </div>
 
-                <div className="card">
+                <div className="card card-estoque-baixo">
                     <h2>Estoque baixo</h2>
                     <p>{produtoEstoqueBaixo}</p>
                 </div>

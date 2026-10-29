@@ -28,6 +28,12 @@ Aplicação web de gerenciamento de estoque desenvolvida como projeto de portfó
 - JSON Web Tokens (JWT)
 - bcrypt
 
+## Banco de dados e ambiente
+
+- Docker
+
+- Docker Compose
+
 ## Estrutura do projeto
 
 - `backend/`: API, rotas, validações, autenticação e acesso ao banco de dados.
@@ -39,19 +45,40 @@ O projeto foi desenvolvido para praticar conceitos de desenvolvimento web, opera
 
 ## Status
 
-Projeto de portfólio em desenvolvimento.
+Projeto de portfólio com funcionalidades principais implementadas.
 
 ## Demonstração
 
-*Capturas de tela da aplicação serão adicionadas aqui.*
+### Login
+![Tela de login](/Screenshots/login.png)
+
+### Cadastro
+![Tela de cadastro](/Screenshots/cadastro.png)
+
+### Dashboard
+![Dashboard](/Screenshots/dashboard.png)
+
+### Produtos
+![Gerenciamento de produtos](/Screenshots/produtos.png)
+
+### Vendas
+![Gerenciamento de vendas](/Screenshots/vendas.png)
+
+## Categorias
+![Gerenciamento de categorias](/Screenshots/categorias.png)
+
+
+
 
 ## Como executar o projeto
 
 ### Pré-requisitos
 
+- Git instalado.
+
 - Node.js e npm instalados.
-- PostgreSQL instalado ou acesso a um banco PostgreSQL.
-- Git instalado para clonar o repositório.
+
+- Docker Desktop instalado e em execução
 
 ### 1. Clonar o repositório
 
@@ -62,11 +89,25 @@ cd StockFlow
 
 ### 2. Configurar as variáveis de ambiente
 
-Crie um arquivo `.env` na raiz do projeto e configure a variável `DATABASE_URL` com a string de conexão do banco de dados PostgreSQL.
+Copie o conteudo do arquivo .env.example para dentro do arquivo  .env, na raiz do projeto, e confira as variáveis de conexão com o banco de dados.
 
-Não publique credenciais reais no repositório.
+Não publique o arquivo .env, pois ele pode conter credenciais.
 
-### 3. Instalar as dependências
+### 3. Iniciar o banco de dados
+
+Na raiz do projeto, execute:
+
+```bash
+docker compose up -d
+```
+
+Para verificar se o contêiner está em execução:
+
+```bash
+docker compose ps
+```
+
+### 4. Instalar as dependências
 
 No terminal do backend:
 
@@ -82,12 +123,21 @@ cd frontend
 npm install
 ```
 
-### 4. Iniciar a aplicação
+### 5. Aplicar as migrações do banco
+
+No terminal do backend, execute:
+
+```bash
+npx prisma migrate deploy
+```
+Esse comando aplica ao banco configurado no Prisma as migrações existentes no projeto.
+
+### 6. Iniciar a aplicação
 
 No terminal do backend, dentro da pasta `backend`:
 
 ```bash
-npx tsx server.js
+npx start
 ```
 
 No terminal do frontend, dentro da pasta `frontend`:

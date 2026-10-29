@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import PrivateRoute from "./PrivateRoute";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
+import Register from "./components/Register";
 
 
 
@@ -23,6 +24,8 @@ function App() {
         <Navbar token={token} setToken={setToken} />
         <Routes>
 
+          <Route path="/register" element={<Register />} />
+
           <Route path="/login" element={<Login setToken={setToken} />} />
 
 
@@ -30,7 +33,7 @@ function App() {
 
             <PrivateRoute token={token}>
 
-              <Dashboard />
+              <Dashboard/>
 
             </PrivateRoute>
 
@@ -41,7 +44,7 @@ function App() {
             <PrivateRoute token={token}>
               <Category />
             </PrivateRoute>
-          } />     
+          } />
 
 
 

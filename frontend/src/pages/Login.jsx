@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Login.css"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
+
 
 function Login({ setToken }) {
     const [email, setEmail] = useState(""); 
@@ -55,41 +56,47 @@ function Login({ setToken }) {
 
     }
 
-    return (
+  
+return (
+    <main>
+        <div className="login-container">
 
-        <main>
+            <h1>Login</h1>
 
-            <div className="login-container">
+            {mensagem && (
+                <p className={`mensagem-login ${tipoMensagem}`}>
+                    {mensagem}
+                </p>
+            )}
 
-                <h1>Login</h1>
+            <form onSubmit={fazerLogin}>
 
-                {mensagem && (
-                    <p className={`mensagem-login ${tipoMensagem}`}>
-                        {mensagem}
-                    </p>
-                )}
+                <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
+                />
 
-                <form onSubmit={fazerLogin}>
+                <input
+                    type="password"
+                    placeholder="Senha"
+                    value={senha}
+                    onChange={(event) => setSenha(event.target.value)}
+                />
 
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(event) => setEmail(event.target.value)} /> 
+                <button type="submit">Entrar</button>
 
-                    <input
-                        type="password"
-                        placeholder="Senha"
-                        value={senha}
-                        onChange={(event) => setSenha(event.target.value)} />
+            </form>
 
-                    <button type="submit">Entrar</button>
+            <p className="login-cadastro">
+                Não tem uma conta? <Link to="/register">Criar conta</Link>
+            </p>
 
-                </form>
-            </div>
+        </div>
+    </main>
+);
 
-        </main>
-    )
 
 
 }

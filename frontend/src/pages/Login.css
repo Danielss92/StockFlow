@@ -45,3 +45,19 @@
     border-color: #a8d5a8;
     color: #205c20;
 }
+.login-cadastro {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #64748b;
+}
+
+.login-cadastro a {
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-cadastro a:hover {
+    text-decoration: underline;
+}

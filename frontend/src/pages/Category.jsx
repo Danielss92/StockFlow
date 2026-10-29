@@ -91,7 +91,7 @@ function Category() {
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        } )
+        })
         const dados = await resposta.json();
 
         if (!resposta.ok) {
@@ -103,43 +103,70 @@ function Category() {
         console.log("Categoria excluída:", dados);
 
         setMensagem("Categoria excluída com sucesso", dados)
-      
+
         setTipoMensagem("sucesso")
 
         buscarCategorias()
     }
     return (
-        <main>
-            <h1>Categorias</h1>
+        <main className="categorias-page">
+
+            <header className="categorias-header">
+                <h1>Categorias</h1>
+                <p>Organize os produtos do seu estoque por categoria.</p>
+            </header>
 
             {mensagem && <p className={`mensagem-categoria ${tipoMensagem}`}>{mensagem}</p>}
 
-            <h2>Nova categoria</h2>
+            <section className="categoria-secao">
 
-            <form onSubmit={(event) => { event.preventDefault(); cadastrarCategoria() }}>
+                <h2>
+                    {categoriaEditando ? "Editar categoria" : "Nova categoria"}
+                </h2>
 
-                
-                <div className="categoria-formulario">
-                <input type="text" placeholder="Nome da categoria" value={nome} onChange={(event) => setNome(event.target.value)}></input> 
+                <form onSubmit={(event) => { event.preventDefault(); cadastrarCategoria() }}>
 
-                <button type="submit"> Cadastrar categoria</button> 
-                </div>
-            </form>
 
-            {categorias.map((categoria) => ( 
+                    <div className="categoria-formulario">
+                        <input type="text" placeholder="Nome da categoria" value={nome} onChange={(event) => setNome(event.target.value)}></input>
 
-                <p key={categoria.id}> 
+                        <button type="submit"> {categoriaEditando ? "Salvar alterações" : "Cadastrar categoria"}</button>
+                    </div>
+                </form>
+            </section>
 
-                    {categoria.nome}
+            <section className="lista-categorias">
+                <h2>Categorias cadastradas</h2>
 
-                    <button type="button" className="botao-editar" onClick={() => editarCategoria(categoria)}>Editar</button>
-                   
 
-                    <button type="button" className="botao-deletar
-                    " onClick={() => excluirCategoria(categoria.id)}>Excluir</button>
+                {categorias.length === 0 ? (
+                    <p>Nenhuma categoria cadastrada.</p>
+                ) : (
+                    categorias.map((categoria) => (
+                        <div className="categoria-item" key={categoria.id}>
+                            <span className="categoria-nome">
+                                {categoria.nome}
+                            </span>
 
-                </p>
-            ))}
+                            <button
+                                type="button"
+                                className="botao-editar"
+                                onClick={() => editarCategoria(categoria)}
+                            >
+                                Editar
+                            </button>
+
+                            <button
+                                type="button"
+                                className="botao-deletar"
+                                onClick={() => excluirCategoria(categoria.id)}
+                            >
+                                Excluir
+                            </button>
+                        </div>
+                    ))
+                )}
+            </section>
         </main>
 
     )

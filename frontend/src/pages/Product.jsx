@@ -15,6 +15,7 @@ function Product({setToken}) {
     const [minimoEstoque, setMinimoEstoque] = useState("");
     const [categoryId, setCategoryId] = useState("");
     const [produtoEditando, setProdutoEditando] = useState(null); 
+    const [categorias, setCategorias] = useState([]);
 
     const [mensagem, setMensagem] = useState(""); 
     const [tipoMensagem, setTipoMensagem] = useState("");
@@ -47,6 +48,22 @@ function Product({setToken}) {
 
 
         }
+           async function buscarCategorias() {
+    const token = localStorage.getItem("token");
+
+    const resposta = await fetch("http://localhost:3000/categories", {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    });
+
+    if (!resposta.ok) {
+        return;
+    }
+
+    const dados = await resposta.json();
+    setCategorias(dados);
+}
 
 
     useEffect(() => {
@@ -55,8 +72,13 @@ function Product({setToken}) {
 
              buscarProdutos() 
         }
+        function listarCategoria(){
+            buscarCategorias()
+        }
         
         listarProdutos()
+        listarCategoria();
+        
         
     }, [])
 
@@ -152,50 +174,122 @@ function Product({setToken}) {
 
         buscarProdutos() 
     }
+ 
 
-    return (
+  return (
+    <main className="produtos-page">
+        <header className="produtos-header">
+            <h1>Produtos</h1>
+            <p>Gerencie seus produtos, preços e níveis de estoque.</p>
+        </header>
 
-        <div className="produto-formulario">
+        {mensagem && (
+            <p className={`mensagem-produto ${tipoMensagem}`}>
+                {mensagem}
+            </p>
+        )}
 
-            {/*FORMULARIO */}
-            <h2>{produtoEditando ? "Editar Produto" : "Novo Produto"}</h2>
+        <section className="produto-secao">
+            <h2>
+                {produtoEditando ? "Editar produto" : "Novo produto"}
+            </h2>
 
-            <input type="text" placeholder="Nome" value={nome} onChange={(event) => setNome(event.target.value)}/>
+            <div className="produto-formulario">
+                <input
+                    type="text"
+                    placeholder="Nome do produto"
+                    value={nome}
+                    onChange={(event) => setNome(event.target.value)}
+                />
 
-            <input type="number" placeholder="Preço" value={preco} onChange={(event)=> setPreco(event.target.value)}></input>
+                <input
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    placeholder="Preço"
+                    value={preco}
+                    onChange={(event) => setPreco(event.target.value)}
+                />
 
-            <input type="number" placeholder="Quantidade em estoque" value={quantidadeEstoque} onChange={(event)=> setQuantidadeEstoque(event.target.value)}></input>
+                <input
+                    type="number"
+                    min="0"
+                    step="1"
+                    placeholder="Quantidade em estoque"
+                    value={quantidadeEstoque}
+                    onChange={(event) =>
+                        setQuantidadeEstoque(event.target.value)
+                    }
+                />
 
-            <input type="number" placeholder="Estoque minimo" value={minimoEstoque} onChange={(event)=> setMinimoEstoque(event.target.value)}></input>
+                <input
+                    type="number"
+                    min="0"
+                    step="1"
+                    placeholder="Estoque mínimo"
+                    value={minimoEstoque}
+                    onChange={(event) =>
+                        setMinimoEstoque(event.target.value)
+                    }
+                />
 
-            <input type="number" placeholder="ID da categoria" value={categoryId} onChange={(event)=> setCategoryId(event.target.value)}></input>
+                <select
+                    value={categoryId}
+                    onChange={(event) => setCategoryId(event.target.value)}
+                >
+                    <option value="">Selecione uma categoria</option>
 
-            <button type="button" onClick={cadastrarProduto}>{produtoEditando ? "Salvar alterações": "Cadastrar produto"}</button>
+                    {categorias.map((categoria) => (
+                        <option key={categoria.id} value={categoria.id}>
+                            {categoria.nome}
+                        </option>
+                    ))}
+                </select>
 
-            {/*FIM FORMULARIO */}
-
-            <h1>Produtos</h1>   
-
-            {mensagem && (<p className={`mensagem-produto ${tipoMensagem}`}>{mensagem}</p>  )}
-            
-
-
-        <div className="lista-produtos">
-            {produtos.map((produto) => (
-                <p key={produto.id}> 
-                    <span>{produto.nome}</span>
-
-
-                    <button type="button" className="botao-editar" onClick={()=> editarProduto(produto)}>Editar</button> 
-
-                    <button type="button" className="botao-deletar" onClick={()=> excluirProduto(produto.id)}>Deletar</button>
-                </p>
-
-            ))}
+                <button type="button" onClick={cadastrarProduto}>
+                    {produtoEditando
+                        ? "Salvar alterações"
+                        : "Cadastrar produto"}
+                </button>
             </div>
-        </div>
-    )
+        </section>
 
+        <section className="lista-produtos">
+            <h2>Produtos cadastrados</h2>
+
+            {produtos.length === 0 ? (
+                <p>Nenhum produto cadastrado.</p>
+            ) : (
+                <div className="lista-produtos-grid">
+                    {produtos.map((produto) => (
+                        <div className="produto-item" key={produto.id}>
+                            <span className="produto-nome">
+                                {produto.nome}
+                            </span>
+
+                            <button
+                                type="button"
+                                className="botao-editar"
+                                onClick={() => editarProduto(produto)}
+                            >
+                                Editar
+                            </button>
+
+                            <button
+                                type="button"
+                                className="botao-deletar"
+                                onClick={() => excluirProduto(produto.id)}
+                            >
+                                Excluir
+                            </button>
+                        </div>
+                    ))}
+                </div>
+            )}
+        </section>
+    </main>
+);
 }
 
-export default Product
+export default Product;
+
